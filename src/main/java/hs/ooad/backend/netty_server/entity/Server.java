@@ -51,7 +51,7 @@ public class Server implements ServerCatalog {
   }
   
   private void init() {
-    this.config.setHostname("localhost");
+    this.config.setHostname("https://angular-drawapp-server.herokuapp.com");
     this.config.setPort(9092);
     this.server = new SocketIOServer(this.config);
     
