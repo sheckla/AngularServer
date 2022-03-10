@@ -1,8 +1,12 @@
 package hs.ooad.backend.netty_server.entity;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Properties;
 import java.util.Set;
 
 // ctl + k -> o
@@ -34,7 +38,7 @@ public class Server implements ServerCatalog {
   private Set<String> roomIDs = new HashSet<>();
   private Configuration config = new Configuration();
   private SocketIOServer server;
-
+  
   
   @Override
   public void startServer() {
@@ -52,8 +56,21 @@ public class Server implements ServerCatalog {
   }
   
   private void init() {
-    this.config.setPort(8080);
+    String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+    String appConfigPath = rootPath + "application.properties";
+    String catalogConfigPath = rootPath + "catalog";
     
+    Properties appProps = new Properties();
+    try {
+      appProps.load(new FileInputStream(appConfigPath));
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    
+    System.out.println(appProps.getProperty("server.port"));
+    int port = Integer.parseInt(appProps.getProperty("server.port"));
+    config.setPort(port);
     this.server = new SocketIOServer(this.config);
     
     AddListenerManager addListenerToServer = new AddListenerManager();
