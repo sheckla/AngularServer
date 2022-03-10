@@ -53,6 +53,7 @@ public class Server implements ServerCatalog {
   
   private void init() {
     this.config.setPort(8080);
+    
     this.server = new SocketIOServer(this.config);
     
     AddListenerManager addListenerToServer = new AddListenerManager();
