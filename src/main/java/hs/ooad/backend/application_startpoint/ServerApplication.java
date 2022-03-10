@@ -19,6 +19,7 @@ public class ServerApplication {
 	
 	public static void main(String[] args) {
 
+		
 		ApplicationContext ctx = SpringApplication.run(ServerApplication.class, args);
 		StartServer startServer = (StartServer) ctx.getBean("startServer");
 		startServer.startServer();
