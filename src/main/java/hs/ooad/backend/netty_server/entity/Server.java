@@ -34,6 +34,7 @@ public class Server implements ServerCatalog {
   private Set<String> roomIDs = new HashSet<>();
   private Configuration config = new Configuration();
   private SocketIOServer server;
+
   
   @Override
   public void startServer() {
@@ -51,8 +52,7 @@ public class Server implements ServerCatalog {
   }
   
   private void init() {
-    this.config.setHostname("https://angular-drawapp-server.herokuapp.com");
-    this.config.setPort(9092);
+    this.config.setPort(8080);
     this.server = new SocketIOServer(this.config);
     
     AddListenerManager addListenerToServer = new AddListenerManager();
@@ -85,6 +85,7 @@ public class Server implements ServerCatalog {
       @Override
       public void onData(SocketIOClient client, String data, AckRequest ackSender) throws Exception {
         String roomID = getRoomId(client);
+        System.out.println(data);
         server.getRoomOperations(roomID).sendEvent("chatMessageToClient", data);
       }
     });
