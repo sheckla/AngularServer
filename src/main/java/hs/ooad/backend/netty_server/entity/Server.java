@@ -62,7 +62,7 @@ public class Server implements ServerCatalog {
     
     Properties appProps = new Properties();
     try {
-      appProps.load(new FileInputStream(appConfigPath));
+      appProps.load(new FileInputStream("file:/app/target/application.properties"));
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
