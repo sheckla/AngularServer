@@ -54,12 +54,13 @@ public class Server implements ServerCatalog {
     this.server.stop();
     
   }
-  
+  // java.io.FileNotFoundException: file:/app/target/whiteboard-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/application.properties (No such file or directory)
   private void init() {
     String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
     String appConfigPath = rootPath + "application.properties";
     String catalogConfigPath = rootPath + "catalog";
     System.out.println(appConfigPath);
+    appConfigPath = "file:/app/target/classes/application.properties";
     Properties appProps = new Properties();
     try {
       appProps.load(new FileInputStream(appConfigPath));
