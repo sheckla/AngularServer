@@ -60,7 +60,7 @@ public class Server implements ServerCatalog {
     String appConfigPath = rootPath + "application.properties";
     String catalogConfigPath = rootPath + "catalog";
     System.out.println(appConfigPath);
-    appConfigPath = "file:/app/target/classes/application.properties";
+    appConfigPath = "BOOT-INF/classes/application.properties";
     Properties appProps = new Properties();
     try {
       appProps.load(new FileInputStream(appConfigPath));
