@@ -59,10 +59,10 @@ public class Server implements ServerCatalog {
     String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
     String appConfigPath = rootPath + "application.properties";
     String catalogConfigPath = rootPath + "catalog";
-    
+    System.out.println(appConfigPath);
     Properties appProps = new Properties();
     try {
-      appProps.load(new FileInputStream("file:/app/target/application.properties"));
+      appProps.load(new FileInputStream(appConfigPath));
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
