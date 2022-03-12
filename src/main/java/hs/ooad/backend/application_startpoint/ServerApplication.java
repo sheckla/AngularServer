@@ -14,19 +14,20 @@ import hs.ooad.backend.application_startpoint.control.StartServer;
 // heroku logs --tail
 // git remote -v
 // heroku git:remote -a nameless-river-96046
+// heroku logs --app netty-server-drawapp
 @SpringBootApplication
 @ComponentScan({ "hs.ooad" })
-@EnableConfigurationProperties(ConfigProperties.class)
 public class ServerApplication {
 	
 	public static void main(String[] args) {
 		for (String s : args) {
 			System.out.println("arg: " + s);
 		}
+
+		ConfigProperties properties = ConfigProperties.getInstance();
+		if (args.length > 2) properties.setPort(args[1]);
 		
 		ApplicationContext ctx = SpringApplication.run(ServerApplication.class, args);
-		ConfigProperties prop = new ConfigProperties();
-		System.out.println("port" + prop.getPort());
 		StartServer startServer = (StartServer) ctx.getBean("startServer");
 		startServer.startServer();
 	}

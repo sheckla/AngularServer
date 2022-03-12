@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import hs.ooad.backend.application_startpoint.ConfigProperties;
 import hs.ooad.backend.netty_server.entity.listener.AddListener_OnConnect;
 import hs.ooad.backend.netty_server.entity.listener.AddListener_OnDisconnect;
 import hs.ooad.backend.netty_server.entity.listener.AddListener_chatMessageToServer;
@@ -60,20 +61,8 @@ public class Server implements ServerCatalog {
   // java.io.FileNotFoundException: file:/app/target/whiteboard-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/application.properties (No such file or directory)
   
   private void init() {
-   /*  try (InputStream input = new FileInputStream("path/to/application.properties")) {
-      
-      Properties prop = new Properties();
-      
-      // load a properties file
-      prop.load(input);
-      
-      // get the property value and print it out
-      System.out.println(prop.getProperty("server.port"));
-      
-    } catch (IOException ex) {
-      ex.printStackTrace();
-    } */
-    
+    ConfigProperties properties = ConfigProperties.getInstance();
+    System.out.println("in server : " + properties.getPort());
     int port = 22;
     config.setPort(port);
     this.server = new SocketIOServer(this.config);

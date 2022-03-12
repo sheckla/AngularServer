@@ -1,13 +1,19 @@
 package hs.ooad.backend.application_startpoint;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
-@ConfigurationProperties(prefix = "mail")
 public class ConfigProperties {
+    private static ConfigProperties properties;
     private String port;
+
+    private ConfigProperties() {}
+
+    public static ConfigProperties getInstance() {
+        if (properties == null) {
+            properties = new ConfigProperties();
+        }
+        return properties;
+    }
     
-    void setPort(String port) {this.port = port;}
-    String getPort() {return this.port;}
+    public void setPort(String port) {this.port = port;}
+    public String getPort() {return this.port;}
 }
