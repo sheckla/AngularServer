@@ -25,7 +25,7 @@ public class ServerApplication {
 		}
 
 		ConfigProperties properties = ConfigProperties.getInstance();
-		if (args.length > 2) properties.setPort(args[1]);
+		if (args.length > 2) properties.setPort(Integer.parseInt(args[1]));
 		
 		ApplicationContext ctx = SpringApplication.run(ServerApplication.class, args);
 		StartServer startServer = (StartServer) ctx.getBean("startServer");

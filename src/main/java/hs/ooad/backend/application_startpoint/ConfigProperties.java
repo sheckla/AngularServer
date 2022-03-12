@@ -3,7 +3,7 @@ package hs.ooad.backend.application_startpoint;
 
 public class ConfigProperties {
     private static ConfigProperties properties;
-    private String port;
+    private int port;
 
     private ConfigProperties() {}
 
@@ -14,6 +14,6 @@ public class ConfigProperties {
         return properties;
     }
     
-    public void setPort(String port) {this.port = port;}
-    public String getPort() {return this.port;}
+    public void setPort(int port) {this.port = port;}
+    public int getPort() {return this.port;}
 }

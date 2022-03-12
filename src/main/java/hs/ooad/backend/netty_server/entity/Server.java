@@ -63,7 +63,8 @@ public class Server implements ServerCatalog {
   private void init() {
     ConfigProperties properties = ConfigProperties.getInstance();
     System.out.println("in server : " + properties.getPort());
-    int port = 22;
+    int port = properties.getPort();
+    if (port == 0) port = 8080;
     config.setPort(port);
     this.server = new SocketIOServer(this.config);
     
