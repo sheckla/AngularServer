@@ -3,9 +3,11 @@ package hs.ooad.backend.netty_server.entity;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
@@ -19,6 +21,7 @@ import com.corundumstudio.socketio.listener.DisconnectListener;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import hs.ooad.backend.netty_server.entity.listener.AddListener_OnConnect;
@@ -55,21 +58,23 @@ public class Server implements ServerCatalog {
     
   }
   // java.io.FileNotFoundException: file:/app/target/whiteboard-0.0.1-SNAPSHOT.jar!/BOOT-INF/classes!/application.properties (No such file or directory)
+  
   private void init() {
-    String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-    String appConfigPath = rootPath + "application.properties";
-    String catalogConfigPath = rootPath + "catalog";
-    System.out.println(appConfigPath);
-    Properties appProps = new Properties();
-    try {
-      appProps.load(new FileInputStream(appConfigPath));
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+   /*  try (InputStream input = new FileInputStream("path/to/application.properties")) {
+      
+      Properties prop = new Properties();
+      
+      // load a properties file
+      prop.load(input);
+      
+      // get the property value and print it out
+      System.out.println(prop.getProperty("server.port"));
+      
+    } catch (IOException ex) {
+      ex.printStackTrace();
+    } */
     
-    System.out.println(appProps.getProperty("server.port"));
-    int port = Integer.parseInt(appProps.getProperty("server.port"));
+    int port = 22;
     config.setPort(port);
     this.server = new SocketIOServer(this.config);
     
